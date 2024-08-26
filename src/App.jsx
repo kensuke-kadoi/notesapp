@@ -15,18 +15,23 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import { getUrl } from "aws-amplify/storage";
 import { uploadData } from "aws-amplify/storage";
+import { signInWithRedirect } from "aws-amplify/auth";
 
 Amplify.configure(outputs);
 const client = generateClient({
   authMode: "userPool",
 });
 
-export default function App() {
+export default async function App() {
   const [notes, setNotes] = useState([]);
 
   useEffect(() => {
     fetchNotes();
   }, []);
+
+  await signInWithRedirect({
+    provider: { custom: 'auth0' }
+  })
 
   async function fetchNotes() {
     const { data: notes } = await client.models.Note.list();
