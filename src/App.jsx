@@ -15,16 +15,34 @@ import { Amplify } from "aws-amplify";
 import "@aws-amplify/ui-react/styles.css";
 import { getUrl } from "aws-amplify/storage";
 import { uploadData } from "aws-amplify/storage";
-import { generateClient } from "aws-amplify/data";
-import outputs from "../amplify_outputs.json";
-/**
- * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
- */
 
-Amplify.configure(outputs);
-const client = generateClient({
-  authMode: "userPool",
-});
+
+Amplify.configure({
+  Auth: {
+    Cognito: {
+      userPoolId: "ap-northeast-1_qiAsz1z8q",
+      userPoolClientId: "7g6s5onnahdkdfhnhb48u3dg8k",
+      identityPoolId: "ap-northeast-1:94a021fe-f77d-4aae-96ee-49f9906bbb41",
+      loginWith: {
+        email: true,
+      },
+      signUpVerificationMethod: "code",
+      userAttributes: {
+        email: {
+          required: true,
+        },
+      },
+      allowGuestAccess: true,
+      passwordFormat: {
+        minLength: 8,
+        requireLowercase: true,
+        requireUppercase: true,
+        requireNumbers: true,
+        requireSpecialCharacters: true,
+      },
+    },
+  },
+})
 
 export default function App() {
   const [notes, setNotes] = useState([]);
