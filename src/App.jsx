@@ -16,6 +16,10 @@ import "@aws-amplify/ui-react/styles.css";
 import { getUrl } from "aws-amplify/storage";
 import { uploadData } from "aws-amplify/storage";
 import { signInWithRedirect } from "aws-amplify/auth";
+import outputs from "../amplify_outputs.json";
+/**
+ * @type {import('aws-amplify/data').Client<import('../amplify/data/resource').Schema>}
+ */
 
 Amplify.configure(outputs);
 const client = generateClient({
