@@ -44,6 +44,10 @@ Amplify.configure({
   },
 })
 
+const client = generateClient({
+  authMode: "userPool",
+});
+
 export default function App() {
   const [notes, setNotes] = useState([]);
 
