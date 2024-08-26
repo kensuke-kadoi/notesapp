@@ -38,7 +38,6 @@ Amplify.configure({
         requireLowercase: true,
         requireUppercase: true,
         requireNumbers: true,
-        requireSpecialCharacters: true,
       },
     },
   },
